@@ -1,19 +1,20 @@
-let Car=function(make,model){
+function Car(make,model){
 	constructor(){
 		this.make=make;
 		this.model=model;
 	}
 }
-Car.Prototype.getMakeModel=function(){
+Car.prototype.getMakeModel=function(){
 	return this.make+" "+this.model;
 }
-let SportsCar=function(make,model,topSpeed){
+function SportsCar(make,model,topSpeed){
 	constructor(){
-		this.make=make;
-		this.model=model;
+		Car.call(this,make,model);
 		this.topSpeed=topSpeed;
 	}
 }
-SportsCar.Prototype.getTopSpeed=function(){
+SportsCar.prototype = Object.create(Car.prototype);
+SportsCar.prototype.constructor = SportsCar;
+SportsCar.prototype.getTopSpeed=function(){
 	return this.topSpeed;
 }
